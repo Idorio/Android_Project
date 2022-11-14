@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Android_Project</string>
+    <string name="cleac_me">cleac me!</string>
+    <string name="hello_world">Hello World!!!</string>
+    <string name="activiti">\" from MainActivity\"</string>
+    <string name="no_data">no data</string>
+    <string name="cleac_me2">cleac_me2</string>
 </resources>
