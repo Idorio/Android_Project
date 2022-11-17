@@ -5,4 +5,8 @@
     <string name="activiti">\" from MainActivity\"</string>
     <string name="no_data">no data</string>
     <string name="cleac_me2">cleac_me2</string>
+    <string name="btn_text">display_text</string>
+    <string name="enter_you_name">enter you name</string>
+    <string name="enter_password">enter your password</string>
+
 </resources>

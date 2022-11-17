@@ -7,29 +7,24 @@ import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import com.example.android_project.MainActivity2.Companion.startMainActivity2
 
 class MainActivity : AppCompatActivity() {
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.color)))
-        supportActionBar?.title = "New title fot MainActivity"
+//        supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.color)))
+//        supportActionBar?.title = "New title fot MainActivity"
 
-        supportActionBar?.setIcon(R.drawable.price)
+        val editText = findViewById<EditText>(R.id.et_text)
+        val editText2 = findViewById<EditText>(R.id.et_text2)
+        val button = findViewById<Button>(R.id.btn_displayText)
+        val textView = findViewById<TextView>(R.id.tv_text)
 
-        val textView = findViewById<TextView>(R.id.textView)
-        val btn = findViewById<Button>(R.id.Button)
-
-
-        btn.setOnClickListener{
-            textView.text = getString(R.string.hello_world)
-            startMainActivity2(this, textView.text.toString()+ getString(R.string.activiti))
-
-
+        button.setOnClickListener {
+            textView.text = "${editText.text.toString()}${editText2.text.toString()}"
         }
-
     }
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Андроид проект</string>
+    <string name="cleac_me">Нажми меня</string>
+    <string name="hello_world">Привет мир!!!</string>
+    <string name="activiti">\" с МейнАктивити\"</string>
+    <string name="no_data">нет данных</string>
+    <string name="cleac_me2">Нажми меня2</string>
+</resources>

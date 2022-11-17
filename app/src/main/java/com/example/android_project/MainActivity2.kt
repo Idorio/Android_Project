@@ -27,15 +27,7 @@ class MainActivity2 : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        if (item.itemId == android.R.id.home){
-//            onBackPressed()
-//        }
-//        if (item.itemId == R.id.close){
-//            onBackPressed()
-//        }
-//        if (item.itemId == R.id.goBack){
-//            onBackPressed()
-//        }
+
         when(item.itemId){
             android.R.id.home -> onBackPressed()
             R.id.close -> finishAffinity()
@@ -50,8 +42,7 @@ class MainActivity2 : AppCompatActivity() {
 
        fun startMainActivity2(
             context: Context,
-            string: String
-        ){
+            string: String){
             val intent = Intent(context,MainActivity2::class.java)
             intent.putExtra(KEY , string)
             context.startActivity(intent)
