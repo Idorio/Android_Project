@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Андроид проект</string>
-    <string name="cleac_me">Нажми меня</string>
-    <string name="hello_world">Привет мир!!!</string>
-    <string name="activiti">\" с МейнАктивити\"</string>
-    <string name="no_data">нет данных</string>
-    <string name="cleac_me2">Нажми меня2</string>
+    <string name="app_name">олин</string>
+    <string name="go_to_the_second">Перейти на второе</string>
+    <string name="go_to_the_third">Перейти на третье </string>
+    <string name="go_to_the_first">Вернуться на первое </string>
+    <string name="valhalla">Один</string>
+    <string name="hello">Привет</string>
+    <string name="fromMain">\" С МейнАктивити\"</string>
+    <string name="no_data">Нет данных</string>
+    <string name="click_me">Нажми меня</string>
+    <string name="close_the_app">CЗакрыть приложение</string>
+    <string name="new_Title">Новое название</string>
 </resources>

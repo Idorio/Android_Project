@@ -1,6 +1,7 @@
 package com.example.android_project
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -17,48 +18,60 @@ class MainActivity3 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main3)
 
-        val editText = findViewById<EditText>(R.id.et_text)
-        val editText2 = findViewById<EditText>(R.id.et_text2)
-        val button = findViewById<Button>(R.id.btn_displayText)
-        val textView = findViewById<TextView>(R.id.tv_text)
+        val ed_text = findViewById<EditText>(R.id.et_text)
+        val edit_text = findViewById<EditText>(R.id.et_text2)
+        val btn_show = findViewById<Button>(R.id.btn_displayText)
+        val tv_text = findViewById<TextView>(R.id.tv_text)
+        val layout1 = findViewById<TextView>(R.id.tv_text)
 
-        val rd1= findViewById<RadioButton>(R.id.rd1)
-        val rd2= findViewById<RadioButton>(R.id.rd2)
+        val rb1 = findViewById<RadioButton>(R.id.radioButton1)
+        val rb2 = findViewById<RadioButton>(R.id.radioButton2)
 
-        val layout1 = findViewById<TextInputLayout>(R.id.textInputLayout1)
-        val layout2 = findViewById<TextInputLayout>(R.id.textInputLayout2)
-        val dialog = AlertDialog.Builder(this)
-            .setTitle("Info")
-            .setMessage("I am androiod developer")
-            .setPositiveButton("ok") {dialog, _ ->
-                Toast.makeText(this,"Called", Toast.LENGTH_SHORT)
-            }
-            .setNegativeButton("Cancel") { dialog, _ ->
-                dialog.cancel()
-            }
+        rb1.setOnClickListener {
+            if (rb1.isChecked) {
+                rb2.isChecked = false
 
-        button.setOnClickListener {
-            dialog.show()
-            if (editText.text.toString().isEmpty()){
-                layout1.setErrorIconDrawable(R.drawable.ic_baseline_error_outline_24)
-                editText.error = " wrong"
-            }else if (editText2.text.toString().isEmpty()){
-                layout2.setErrorIconDrawable(R.drawable.ic_baseline_error_outline_24)
-                editText.error = " wrong"
-            }else{
-                textView.text = "${editText.text.toString()}${editText2.text.toString()}"
+            } else {
+                rb1.isChecked = true
             }
         }
 
-        rd1.setOnClickListener {
-            if (rd1.isChecked){
-                rd2.isChecked =false
+        rb2.setOnClickListener {
+            if (rb2.isChecked) {
+                rb1.isChecked = false
+            } else {
+                rb2.isChecked = true
             }
-        }
+            val dialog = AlertDialog.Builder(this)
+                .setTitle("About")
+                .setMessage("Message")
+                .setCancelable(false)
+                .setPositiveButton("Ok") { dialog, _ ->
+                    Toast.makeText(this, "called pisitive", Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("Cancel") { dialog, _ ->
+                    dialog.cancel()
+                }
 
-        rd2.setOnClickListener {
-            if (rd2.isChecked){
-                rd1.isChecked =false
+            btn_show.setOnClickListener {
+                dialog.show()
+
+//                if (ed_text.text.toString().isEmpty()){
+//                    layout1.setErrorIcon
+//                }
+//                    Toast.makeText(this,"emal can't be empty",Tosat.LEGTH_SHORT).show()
+//                   else if (edit_text.text.toString().isEmpty){
+//                        Toast.makeText(this,"password can't be empty",Tosat.LEGTH_SHORT).show()
+//                }
+//                    else{
+//                tv_text.text = "${ed_text.text.toString()}" + "${edit_text.text.toString()}"
+//            }
+                val btnGoTo = findViewById<Button>(R.id.btnGoToActivity1)
+                btnGoTo.setOnClickListener {
+                    startActivity(
+                        Intent("com.example.koltin.OPEN_FIRST_ACTIVITY")
+                    )
+                }
             }
         }
     }

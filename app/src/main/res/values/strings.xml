@@ -1,12 +1,23 @@
 <resources>
-    <string name="app_name">Android_Project</string>
-    <string name="cleac_me">cleac me!</string>
-    <string name="hello_world">Hello World!!!</string>
-    <string name="activiti">\" from MainActivity\"</string>
+    <string name="app_name">Kollin</string>
+    <string name="go_to_the_second">Go to the second</string>
+    <string name="go_to_the_third">Go to the third</string>
+    <string name="go_to_the_first">Go to the first</string>
+    <string name="valhalla">Valhalla</string>
+    <string name="hello">Hello world</string>
+    <string name="fromMain">\" from main activity\"</string>
     <string name="no_data">no data</string>
-    <string name="cleac_me2">cleac_me2</string>
-    <string name="btn_text">display_text</string>
-    <string name="enter_you_name">enter you name</string>
-    <string name="enter_password">enter your password</string>
+    <string name="click_me">Click me</string>
+    <string name="close_the_app">Close the app</string>
+    <string name="new_Title">New title for MainActivity</string>
+    <string name="show_text">Show text</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="Hello_world2">Hello world</string>
+    <string name="enter_name">enter name</string>
+    <string name="falsee">false</string>
+    <string name="truee">trueeee</string>
+    <string name="display_text">distext</string>
+    <string name="go_to_activity_1">go</string>
 
 </resources>
