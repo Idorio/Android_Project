@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Android_Project</string>
+    <string name="first">first</string>
+    <string name="second">second</string>
+    <string name="the_screen_is_finished">the screen is finished</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="button">Button</string>
+    <string name="finish">finish</string>
+    <string name="go_to_detais">go to detais</string>
+    <string name="you_are_in_details_fragment">YOU ARE IN DETAILS FRAGMENT</string>
+    <string name="GoToDetais">go_te_deatail</string>
+    <string name="apple">apple</string>
 </resources>
