@@ -13,8 +13,9 @@ class MainActivity2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setIcon(R.drawable.price)
+        supportActionBar?.setIcon(R.drawable.robot)
 
         val textView2 = findViewById<TextView>(R.id.textView)
 
@@ -49,7 +50,7 @@ class MainActivity2 : AppCompatActivity() {
         private const val KEY = "1"
 
         fun startSecond(context: Context, string: String) {
-            val intent = Intent(context, MainActivity2::class.java)
+            val intent = Intent(context, MainActivity3::class.java)
             intent.putExtra(KEY, string)
             context.startActivity(intent)
         }

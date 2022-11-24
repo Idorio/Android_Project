@@ -19,5 +19,7 @@
     <string name="truee">trueeee</string>
     <string name="display_text">distext</string>
     <string name="go_to_activity_1">go</string>
+    <string name="go_to_kotlin_act">Go to kotlin act</string>
+    <string name="object">Object</string>
 
 </resources>

@@ -1,31 +1,32 @@
 package com.example.android_project
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.example.android_project.KotlinActivity.Companion.startKotlinAct
 import com.google.android.material.textfield.TextInputLayout
+import com.google.android.material.textview.MaterialTextView
 
 class MainActivity3 : AppCompatActivity() {
-
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main3)
 
-        val ed_text = findViewById<EditText>(R.id.et_text)
-        val edit_text = findViewById<EditText>(R.id.et_text2)
+        val email = findViewById<EditText>(R.id.email)
+        val pass = findViewById<EditText>(R.id.pass)
         val btn_show = findViewById<Button>(R.id.btn_displayText)
-        val tv_text = findViewById<TextView>(R.id.tv_text)
-        val layout1 = findViewById<TextView>(R.id.tv_text)
+        val layoutEmail = findViewById<TextInputLayout>(R.id.inputEmail)
+        val layoutPass = findViewById<TextInputLayout>(R.id.inputPass)
+        val outPut = findViewById<MaterialTextView>(R.id.tv_text)
 
-        val rb1 = findViewById<RadioButton>(R.id.radioButton1)
-        val rb2 = findViewById<RadioButton>(R.id.radioButton2)
+        val rb1 = findViewById<RadioButton>(R.id.rd1)
+        val rb2 = findViewById<RadioButton>(R.id.rd2)
 
         rb1.setOnClickListener {
             if (rb1.isChecked) {
@@ -42,37 +43,39 @@ class MainActivity3 : AppCompatActivity() {
             } else {
                 rb2.isChecked = true
             }
-            val dialog = AlertDialog.Builder(this)
-                .setTitle("About")
-                .setMessage("Message")
-                .setCancelable(false)
-                .setPositiveButton("Ok") { dialog, _ ->
-                    Toast.makeText(this, "called pisitive", Toast.LENGTH_SHORT).show()
-                }
-                .setNegativeButton("Cancel") { dialog, _ ->
-                    dialog.cancel()
-                }
-
-            btn_show.setOnClickListener {
-                dialog.show()
-
-//                if (ed_text.text.toString().isEmpty()){
-//                    layout1.setErrorIcon
-//                }
-//                    Toast.makeText(this,"emal can't be empty",Tosat.LEGTH_SHORT).show()
-//                   else if (edit_text.text.toString().isEmpty){
-//                        Toast.makeText(this,"password can't be empty",Tosat.LEGTH_SHORT).show()
-//                }
-//                    else{
-//                tv_text.text = "${ed_text.text.toString()}" + "${edit_text.text.toString()}"
-//            }
-                val btnGoTo = findViewById<Button>(R.id.btnGoToActivity1)
-                btnGoTo.setOnClickListener {
-                    startActivity(
-                        Intent("com.example.koltin.OPEN_FIRST_ACTIVITY")
-                    )
-                }
+        }
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("About")
+            .setMessage("Message")
+            .setCancelable(false)
+            .setPositiveButton("Ok") { dialog, _ ->
+                Toast.makeText(this, "called pisitive", Toast.LENGTH_SHORT).show()
             }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.cancel()
+            }
+
+        btn_show.setOnClickListener {
+            if (email.text.toString().isEmpty()) {
+                layoutEmail.error
+                layoutEmail.helperText = "Lol"
+                Toast.makeText(
+                    this, "email can't be empty",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else if (email.text.toString().isEmpty()) {
+                Toast.makeText(
+                    this, "password can't be empty",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                outPut.text = "${email.text.toString()}" + "${pass.text.toString()}"
+            }
+            dialog.show()
+        }
+        val btnGoTo = findViewById<Button>(R.id.goToFFirst)
+        btnGoTo.setOnClickListener {
+            startKotlinAct(this)
         }
     }
 }
