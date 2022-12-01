@@ -24,8 +24,9 @@ class OnBoardingFragment : Fragment() {
 
         val onBoardingFragment = view.findViewById<Button>(R.id.btnFinish)
         onBoardingFragment.setOnClickListener{
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.activity_containter, ItemsFragment())
+            parentFragmentManager
+                .beginTransaction()
+                .add(R.id.activity_containter, ItemsFragment())
                 .commit()
         }
     }

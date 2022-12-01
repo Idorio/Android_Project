@@ -11,8 +11,8 @@ class ItemAdapter(private val itemListener: ItemListener) : RecyclerView.Adapter
 
         private var listItem = mutableListOf<ItemsModel>()
 
-        fun submitList(list: List<ItemsModel>){
-            this.listItem = list.toMutableList()
+        fun submitList(list: MutableList<ItemsModel>){
+            this.listItem = list
         }
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
             val view = LayoutInflater.from(parent.context)
@@ -26,6 +26,6 @@ class ItemAdapter(private val itemListener: ItemListener) : RecyclerView.Adapter
         }
 
         override fun getItemCount(): Int {
-            return 0
+            return listItem.size
         }
     }

@@ -22,23 +22,23 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val detailsName = view.findViewById<TextView>(R.id.textViewOne)
-        val detailsDate = view.findViewById<TextView>(R.id.textViewTwo)
-        val detailsImage = view.findViewById<ImageView>(R.id.apple)
+        val detailsName = view.findViewById<TextView>(R.id.detailsName)
+        val detailsDate = view.findViewById<TextView>(R.id.detailsDate)
+        val detailsImage = view.findViewById<ImageView>(R.id.detaisImage)
 
         val bundle = arguments
-        bundle?.let { safeBundle ->
-            val name = safeBundle.getString("name")
-            val date = safeBundle.getString("date")
-            val image = safeBundle.getInt("imageview")
+        bundle?.let {
+            val name = bundle.getString("name")
+            val date = bundle.getString("date")
+            val image = bundle.getInt("imageview")
+
+
 
             detailsDate.text = date
-            detailsImage.setBackgroundResource(image)
             detailsName.text = name
+            detailsImage.setBackgroundResource(image)
 
 
         }
-
-
     }
 }

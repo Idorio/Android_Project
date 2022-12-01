@@ -16,10 +16,19 @@ class ItemViewHolder(
 
     fun bind(itemModel: ItemsModel) {
         val name = view.findViewById<TextView>(R.id.recyclerView)
-        val imageView = view.findViewById<ImageView>(R.id.apple)
-        val date = view.findViewById<TextView>(R.id.data)
-        name.text = itemModel.name
+        val imageView = view.findViewById<ImageView>(R.id.iv_name)
+        val date = view.findViewById<TextView>(R.id.tv_date)
 
+        name.text = itemModel.name
+        imageView.setBackgroundResource(itemModel.image)
+        date.text = itemModel.date
+
+        imageView.setOnClickListener{
+            itemListener.onClick()
+        }
+        itemView.setOnClickListener{
+            itemListener.onElementSelected(itemModel.name, itemModel.date,itemModel.image)
+        }
 
     }
 }
