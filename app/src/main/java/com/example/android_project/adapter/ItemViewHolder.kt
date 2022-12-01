@@ -15,7 +15,7 @@ class ItemViewHolder(
     ) : RecyclerView.ViewHolder(view) {
 
     fun bind(itemModel: ItemsModel) {
-        val name = view.findViewById<TextView>(R.id.recyclerView)
+        val name = view.findViewById<TextView>(R.id.tv_name)
         val imageView = view.findViewById<ImageView>(R.id.iv_name)
         val date = view.findViewById<TextView>(R.id.tv_date)
 
