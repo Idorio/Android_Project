@@ -30,7 +30,7 @@ class DetailsFragment : Fragment() {
         bundle?.let {
             val name = bundle.getString("name")
             val date = bundle.getString("date")
-            val image = bundle.getInt("imageview")
+            val image = bundle.getInt("imageView")
 
 
 

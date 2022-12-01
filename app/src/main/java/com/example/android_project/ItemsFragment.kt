@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_project.adapter.ItemAdapter
@@ -16,6 +17,8 @@ import com.example.android_project.model.ItemsModel
 class ItemsFragment : Fragment(),ItemListener {
 
     private lateinit var  itemAdapter: ItemAdapter
+
+    private val viewModel : ItemsViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -33,41 +36,39 @@ class ItemsFragment : Fragment(),ItemListener {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = itemAdapter
 
+        viewModel.getData()
 
-        val listItems = mutableListOf<ItemsModel>(
-            ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-            ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-            ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-            ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-            ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-            ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-            ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-            ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-            ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-            ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-
-            )
-        itemAdapter.submitList(listItems)
-
-
+        viewModel.items.observe(viewLifecycleOwner){ listItems ->
+            itemAdapter.submitList(listItems)
         }
 
+        viewModel.msg.observe(viewLifecycleOwner){msg ->
+            Toast.makeText(context,msg,Toast.LENGTH_SHORT).show()
+
+        }
+        viewModel.bundle.observe(viewLifecycleOwner){navBundle->
+            val detailsFragment = DetailsFragment()
+            val bundle = Bundle()
+            bundle.putString("name", navBundle.name)
+            bundle.putString("date",navBundle.date)
+            bundle.putInt("imageView", navBundle.image)
+            detailsFragment.arguments = bundle
+
+            parentFragmentManager
+                .beginTransaction()
+                .replace(R.id.activity_container, detailsFragment)
+                .addToBackStack("Details")
+                .commit()
+
+        }
+    }
+
+
     override fun onClick() {
-        Toast.makeText(context, "Image ViewClicked", Toast.LENGTH_SHORT).show()
+        viewModel.imageViewClicked()
     }
 
     override fun onElementSelected(name: String, date: String, imageView: Int) {
-        val detailsFragment = DetailsFragment()
-        val bundle = Bundle()
-        bundle.putString("name",name)
-        bundle.putString("date",date)
-        bundle.putInt("imageView", imageView)
-        detailsFragment.arguments = bundle
-
-        parentFragmentManager
-            .beginTransaction()
-            .replace(R.id.activity_container, detailsFragment)
-            .addToBackStack("Details")
-            .commit()
+        viewModel.elementClicked(name, date, imageView)
     }
 }
