@@ -26,7 +26,7 @@ class OnBoardingFragment : Fragment() {
         onBoardingFragment.setOnClickListener{
             parentFragmentManager
                 .beginTransaction()
-                .add(R.id.activity_containter, ItemsFragment())
+                .add(R.id.activity_container, ItemsFragment())
                 .commit()
         }
     }

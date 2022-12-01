@@ -22,7 +22,6 @@ class ItemsFragment : Fragment(),ItemListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         return inflater.inflate(R.layout.fragment_items, container, false)
     }
 
@@ -41,7 +40,6 @@ class ItemsFragment : Fragment(),ItemListener {
             ItemsModel(R.drawable.apple, "Android", "12.25.45"),
             ItemsModel(R.drawable.apple, "Android", "12.25.45"),
             ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-            ItemsModel(R.drawable.apple, "Anddsfid", "12.25.45"),
             ItemsModel(R.drawable.apple, "Android", "12.25.45"),
             ItemsModel(R.drawable.apple, "Android", "12.25.45"),
             ItemsModel(R.drawable.apple, "Android", "12.25.45"),
@@ -68,7 +66,7 @@ class ItemsFragment : Fragment(),ItemListener {
 
         parentFragmentManager
             .beginTransaction()
-            .replace(R.id.activity_containter, detailsFragment)
+            .replace(R.id.activity_container, detailsFragment)
             .addToBackStack("Details")
             .commit()
     }
