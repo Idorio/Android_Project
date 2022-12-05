@@ -59,6 +59,7 @@ class ItemsFragment : Fragment(),ItemListener {
                 .replace(R.id.activity_container, detailsFragment)
                 .addToBackStack("Details")
                 .commit()
+            viewModel.userNavigated()
 
         }
     }

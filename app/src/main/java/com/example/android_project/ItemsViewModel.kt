@@ -43,9 +43,16 @@ class ItemsViewModel : ViewModel(){
         _bundle.value = NavigateWithBundle(
             name = name,
             date = date,
-            image = imageView)
+            image = imageView
+        )
+    }
+
+    fun userNavigated(){
+
     }
 }
+
+
 
 data class NavigateWithBundle(
     val image: Int,
