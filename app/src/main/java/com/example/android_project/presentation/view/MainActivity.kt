@@ -4,6 +4,7 @@ package com.example.android_project.presentation.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.android_project.R
+import com.example.android_project.presentation.databinding.LoginFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -12,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.activity_container, OnBoardingFragment())
+        fragmentTransaction.add(R.id.activity_container, LoginFragment())
         fragmentTransaction.commit()
     }
 }

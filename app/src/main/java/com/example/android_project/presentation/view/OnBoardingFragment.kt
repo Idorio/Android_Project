@@ -6,14 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.viewModels
 import com.example.android_project.R
 import com.example.android_project.databinding.FragmentOnBoardingBinding
+import com.example.android_project.presentation.view.Navigation.setFragment
 
 
 class OnBoardingFragment : Fragment() {
 
-    private var _viewBinding:FragmentOnBoardingBinding? = null
-    private val viewBinding get() = _viewBinding!!
+    private var _binding:FragmentOnBoardingBinding? = null
+    private val binding get() = _binding!!
+
+    private val viewModel : OnBoardingViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -30,10 +34,8 @@ class OnBoardingFragment : Fragment() {
 
 
         viewBinding.btnFinish.setOnClickListener{
-            parentFragmentManager
-                .beginTransaction()
-                .replace(R.id.activity_container, ItemsFragment())
-                .commit()
+            setFragment(parentFragmentManager, ItemsFragment())
+            viewModel.onBo
         }
     }
 }
