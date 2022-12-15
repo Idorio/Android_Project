@@ -17,8 +17,9 @@ import com.example.android_project.domain.ItemsRepository
 import com.example.android_project.presentation.adapter.ItemAdapter
 import com.example.android_project.lister.ItemListener
 import com.example.android_project.model.ItemsModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ItemsFragment : Fragment(),ItemListener, ItemsView {
 
     private var _viewBinding: FragmentItemsBinding? = null

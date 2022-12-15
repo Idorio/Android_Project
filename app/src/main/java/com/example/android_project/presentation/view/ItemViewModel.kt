@@ -1,12 +1,14 @@
 package com.example.android_project
 
-import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android_project.model.ItemsModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class ItemsViewModel : ViewModel(){
+@HiltViewModel
+class ItemsViewModel @Inject constructor() : ViewModel(){
 
     private val _items = MutableLiveData<MutableList<ItemsModel>>()
     val items: LiveData<MutableList<ItemsModel>> = _items

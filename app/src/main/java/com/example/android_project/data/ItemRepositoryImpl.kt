@@ -3,8 +3,9 @@ package com.example.android_project.data
 import com.example.android_project.R
 import com.example.android_project.domain.ItemsRepository
 import com.example.android_project.model.ItemsModel
+import javax.inject.Inject
 
-class ItemRepositoryImpl: ItemsRepository {
+class ItemRepositoryImpl @Inject constructor():ItemsRepository {
 
    override fun getData(): List<ItemsModel>{
       val listItems = mutableListOf<ItemsModel>(

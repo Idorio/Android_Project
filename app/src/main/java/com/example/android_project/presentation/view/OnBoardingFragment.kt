@@ -14,18 +14,18 @@ import com.example.android_project.presentation.view.Navigation.setFragment
 
 class OnBoardingFragment : Fragment() {
 
-    private var _binding:FragmentOnBoardingBinding? = null
+    private var _binding: FragmentOnBoardingBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel : OnBoardingViewModel by viewModels()
+    private val viewModel: OnBoardingViewModel by viewModels()
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _viewBinding= FragmentOnBoardingBinding.inflate(inflater)
-        return viewBinding.root
+        _binding = FragmentOnBoardingBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,9 +33,9 @@ class OnBoardingFragment : Fragment() {
 
 
 
-        viewBinding.btnFinish.setOnClickListener{
+        binding.btnFinish.setOnClickListener {
             setFragment(parentFragmentManager, ItemsFragment())
-            viewModel.onBo
+            viewModel.onBoardingBack()
         }
     }
 }
