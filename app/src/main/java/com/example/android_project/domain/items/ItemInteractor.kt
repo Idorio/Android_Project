@@ -1,5 +1,6 @@
-package com.example.android_project.domain
+package com.example.android_project.domain.items
 
+import com.example.android_project.domain.ItemsRepository
 import com.example.android_project.model.ItemsModel
 import javax.inject.Inject
 

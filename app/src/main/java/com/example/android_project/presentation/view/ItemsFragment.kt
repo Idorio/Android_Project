@@ -6,14 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.android_project.R
 import com.example.android_project.data.ItemRepositoryImpl
 import com.example.android_project.databinding.FragmentItemsBinding
-import com.example.android_project.databinding.FragmentOnBoardingBinding
-import com.example.android_project.domain.ItemInteractor
-import com.example.android_project.domain.ItemsRepository
+import com.example.android_project.domain.items.ItemInteractor
 import com.example.android_project.presentation.adapter.ItemAdapter
 import com.example.android_project.lister.ItemListener
 import com.example.android_project.model.ItemsModel

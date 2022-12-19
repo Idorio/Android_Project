@@ -4,7 +4,7 @@ package com.example.android_project.presentation.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.android_project.R
-import com.example.android_project.presentation.databinding.LoginFragment
+import com.example.android_project.presentation.auth.LoginFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 

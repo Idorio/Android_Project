@@ -1,16 +1,14 @@
-package com.example.android_project.presentation.databinding
+package com.example.android_project.presentation.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.android_project.R
 import com.example.android_project.databinding.FragmentLoginBinding
-import com.example.android_project.presentation.view.ItemsView
-import com.example.android_project.presentation.view.Navigation.setFragment
-import com.example.android_project.presentation.view.OnBoardingFragment
 
 
 class LoginFragment : Fragment() {
@@ -23,7 +21,7 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentLoginBinding.inflate(inflater,container,false)
         return binding.root
 
@@ -32,13 +30,24 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.viewModel = viewModel
-
-    }
-    inner class ViewHandler{
-        fun goToTheOnBoarding(){
-            setFragment(parentFragmentManager,OnBoardingFragment())
+        binding.btnLogin.setOnClickListener {
+            viewModel.loginUser(
+                binding.etUserName.text.toString(),
+                binding.etUserPassword.text.toString()
+            )
         }
+        viewModel.nav.observe(viewLifecycleOwner) {
+            if (it!= null) {
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.activity_container, LoginFragment())
+                    .commit()
+            }
+        }
+        viewModel.error.observe(viewLifecycleOwner){
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+        }
+
+
     }
 
 }

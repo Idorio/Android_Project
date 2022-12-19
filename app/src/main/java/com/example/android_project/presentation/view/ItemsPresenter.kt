@@ -1,9 +1,7 @@
 package com.example.android_project.presentation.view
 
-import com.example.android_project.presentation.view.ItemsView
 import com.example.android_project.R
-import com.example.android_project.domain.ItemInteractor
-import com.example.android_project.model.ItemsModel
+import com.example.android_project.domain.items.ItemInteractor
 
 class ItemsPresenter(private val itemsView : ItemsView,private val itemsInteractor: ItemInteractor) {
 

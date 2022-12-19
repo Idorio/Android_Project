@@ -1,6 +1,6 @@
 package com.example.android_project.di
 
-import com.example.android_project.domain.ItemInteractor
+import com.example.android_project.domain.items.ItemInteractor
 import com.example.android_project.domain.ItemsRepository
 import dagger.Module
 import dagger.Provides
