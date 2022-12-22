@@ -31,10 +31,6 @@ class SharedPreferencesHelper @Inject constructor(
         saveUserPassword(null)
     }
 
-
-
-
-
     companion object{
         private const val USER_NAME = "USER_NAME"
         private const val USER_PASSWORD = "USER_PASSWORD"

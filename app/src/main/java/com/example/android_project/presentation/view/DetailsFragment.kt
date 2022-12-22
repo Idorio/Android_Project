@@ -5,29 +5,30 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import com.example.android_project.R
 import com.example.android_project.databinding.FragmentDetailsBinding
-import com.example.android_project.databinding.FragmentItemsBinding
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
+class DetailsFragment : Fragment(), DatailsView {
+
+    private var Binding: FragmentDetailsBinding? = null
+    private val binding get() = Binding!!
 
 
-class DetailsFragment : Fragment() {
-
-    private var _viewBinding: FragmentDetailsBinding? = null
-    private val viewBinding get() = _viewBinding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        _viewBinding= FragmentDetailsBinding.inflate(inflater)
-        return viewBinding.root
+        Binding= FragmentDetailsBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
 
 
 
@@ -39,9 +40,9 @@ class DetailsFragment : Fragment() {
 
 
 
-            viewBinding.detailsDate.text = date
-            viewBinding.detailsName.text = name
-            viewBinding.detailsImage.setBackgroundResource(image)
+           binding.detailsDate.text = date
+            binding.detailsName.text = name
+            binding.detailsImage.setBackgroundResource(image)
 
 
         }

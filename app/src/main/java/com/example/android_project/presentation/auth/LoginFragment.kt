@@ -9,14 +9,20 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.android_project.R
 import com.example.android_project.databinding.FragmentLoginBinding
+import com.example.android_project.presentation.view.HomeFragment
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
-class LoginFragment : Fragment() {
+@AndroidEntryPoint
+class LoginFragment : Fragment(), LoginView {
 
     private var _binding:FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: LoginViewModel by viewModels()
+    @Inject
+    lateinit var loginPresenter: LoginPresenter
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,24 +36,23 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        loginPresenter.setView(this)
+
         binding.btnLogin.setOnClickListener {
-            viewModel.loginUser(
+            loginPresenter.userLogin(
                 binding.etUserName.text.toString(),
                 binding.etUserPassword.text.toString()
             )
-        }
-        viewModel.nav.observe(viewLifecycleOwner) {
-            if (it!= null) {
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.activity_container, LoginFragment())
-                    .commit()
-            }
-        }
-        viewModel.error.observe(viewLifecycleOwner){
-            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+
         }
 
 
+    }
+
+    override fun userLoggedIn() {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.activity_container , HomeFragment())
+            .commit()
     }
 
 }

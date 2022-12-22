@@ -6,7 +6,7 @@ import com.example.android_project.domain.auth.AuthRepository
 import com.example.android_project.model.UserModel
 import javax.inject.Inject
 
-abstract class AuthRepositoryImpl @Inject constructor(
+class AuthRepositoryImpl @Inject constructor(
     private val sharedPreferencesHelper: SharedPreferencesHelper
 ):AuthRepository {
     override fun userLoggerIn(userName: String, userPassword: String) {
@@ -27,5 +27,4 @@ abstract class AuthRepositoryImpl @Inject constructor(
     override fun getUserCreds(): UserModel {
        return sharedPreferencesHelper.getUserCreds()
     }
-
 }

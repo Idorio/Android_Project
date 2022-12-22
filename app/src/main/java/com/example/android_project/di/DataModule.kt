@@ -1,8 +1,10 @@
 package com.example.android_project.di
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import com.example.android_project.data.ItemRepositoryImpl
 import com.example.android_project.data.SheredPref.SharedPreferencesHelper
+import com.example.android_project.data.auth.AuthRepositoryImpl
 import com.example.android_project.domain.ItemsRepository
 import com.example.android_project.domain.auth.AuthRepository
 import dagger.Binds
@@ -16,7 +18,7 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 abstract class DataModule {
     @Binds
-   abstract fun bindAuthRepositpory(authRepository: AuthRepository
+   abstract fun bindAuthRepositpory(authRepositoryImpl: AuthRepositoryImpl
     ):AuthRepository
 
    companion object{
@@ -25,8 +27,8 @@ abstract class DataModule {
        @Provides
        fun provideSharedPreferencesHelper(@ApplicationContext context: Context):SharedPreferencesHelper{
            return SharedPreferencesHelper(
-               context.getSharedPreferences(SHARED_PRESS_KEY,
-                   Context.MODE_PRIVATE
+               context.getSharedPreferences(
+                   SHARED_PRESS_KEY,MODE_PRIVATE
                )
            )
        }

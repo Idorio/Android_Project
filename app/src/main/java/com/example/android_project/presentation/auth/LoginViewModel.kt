@@ -14,21 +14,12 @@ class LoginViewModel @Inject constructor(
     private val _nav = MutableLiveData<Unit?>()
     val nav: LiveData<Unit?> = _nav
 
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String> = _error
-
     fun loginUser(userName: String, userPassword: String) {
-        try {
+
             authInteractor.userLoggedIn(userName, userPassword)
             _nav.value = Unit
-        }catch (e:Exception){
-            _error.value = "This user already exist"
         }
+    }
 
-    }
-    fun userLoggerIn(){
-        _nav.value=null
-    }
-}
 
 

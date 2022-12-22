@@ -1,25 +1,39 @@
 package com.example.android_project.presentation.view
 
-import com.example.android_project.R
 import com.example.android_project.domain.items.ItemInteractor
-
-class ItemsPresenter(private val itemsView : ItemsView,private val itemsInteractor: ItemInteractor) {
-
-    fun getData(){
-        val list = itemsInteractor.getData()
+import com.example.android_project.presentation.auth.ItemsView
+import javax.inject.Inject
 
 
-        itemsView.dateReceived(list)
+class ItemsPresenter @Inject constructor( private val itemInteractor: ItemInteractor) {
+    private lateinit var itemsView: ItemsView
+    fun setView(itemsFragment: ItemsFragment){
+        itemsView = itemsView
+    }
+
+    fun getItems(){
+        val items = itemInteractor.getData()
+        itemsView.itemsReceived()
+    }
+
 
     }
 
     fun imageViewClicked(){
-        itemsView.imageViewClicked(R.string.hello_blank_fragment)
 
     }
 
-    fun elementSelected(name: String, date: String, imageView: Int){
-        itemsView.goToDetails(name, date , imageView)
+    fun itemClicked(name: String,date: String,itemsView: Int){
+
+
+
     }
 
-}
+
+
+data class NavigateWithBundle(
+    val image: Int,
+    val name: String,
+    val date: String
+)
+
