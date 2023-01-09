@@ -1,7 +1,6 @@
 package com.example.android_project.lister
 
-import android.widget.ImageView
-import android.widget.Toast
+
 
 interface ItemListener {
 

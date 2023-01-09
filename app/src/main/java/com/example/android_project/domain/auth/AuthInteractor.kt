@@ -6,16 +6,16 @@ import javax.inject.Inject
 class AuthInteractor @Inject constructor(
     private val authRepository: AuthRepository
 ) {
-   fun userLoggedIn(userName:String, userPassword:String){
+  suspend fun loginUser(userName:String, userPassword:String){
        authRepository.userLoggerIn(userName,userPassword)
    }
-    fun userLoggerOut(){
+    suspend  fun userLoggerOut(){
         authRepository.userLoggetOut()
     }
-    fun doesUserExist(): Boolean {
+    suspend  fun doesUserExist(): Boolean {
         return authRepository.doesUserExist()
     }
-    fun getUserCreds(): UserModel {
+    suspend fun getUserCreds(): UserModel {
         return authRepository.getUserCreds()
     }
 

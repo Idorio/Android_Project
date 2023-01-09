@@ -4,28 +4,37 @@ package com.example.android_project.data.auth
 import com.example.android_project.data.SheredPref.SharedPreferencesHelper
 import com.example.android_project.domain.auth.AuthRepository
 import com.example.android_project.model.UserModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-abstract class AuthRepositoryImpl @Inject constructor(
+class AuthRepositoryImpl @Inject constructor(
     private val sharedPreferencesHelper: SharedPreferencesHelper
 ):AuthRepository {
-    override fun userLoggerIn(userName: String, userPassword: String) {
-        sharedPreferencesHelper.saveUserName(userName)
-        sharedPreferencesHelper.saveUserPassword(userPassword)
+    override suspend fun userLoggerIn(userName: String, userPassword: String) {
+        return withContext(Dispatchers.IO)
+        {sharedPreferencesHelper.saveUserName(userName)
+            sharedPreferencesHelper.saveUserPassword(userPassword)}
+
 
     }
 
-    override fun userLoggetOut() {
-        sharedPreferencesHelper.logoutUser()
+    override suspend fun userLoggetOut() {
+       return withContext(Dispatchers.IO)
+       {sharedPreferencesHelper.logoutUser()}
+
 
     }
 
-    override fun doesUserExist(): Boolean {
-        return sharedPreferencesHelper.checkUserExist()
+    override suspend fun doesUserExist(): Boolean {
+        return withContext(Dispatchers.IO)
+        {sharedPreferencesHelper.checkUserExist()}
     }
 
-    override fun getUserCreds(): UserModel {
-       return sharedPreferencesHelper.getUserCreds()
+    override suspend fun getUserCreds(): UserModel {
+        return  withContext(Dispatchers.IO)
+        {sharedPreferencesHelper.getUserCreds()}
+
     }
 
 }

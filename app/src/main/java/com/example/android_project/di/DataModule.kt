@@ -3,6 +3,7 @@ package com.example.android_project.di
 import android.content.Context
 import com.example.android_project.data.ItemRepositoryImpl
 import com.example.android_project.data.SheredPref.SharedPreferencesHelper
+import com.example.android_project.data.auth.AuthRepositoryImpl
 import com.example.android_project.domain.ItemsRepository
 import com.example.android_project.domain.auth.AuthRepository
 import dagger.Binds
@@ -16,10 +17,17 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 abstract class DataModule {
     @Binds
-   abstract fun bindAuthRepositpory(authRepository: AuthRepository
-    ):AuthRepository
+    abstract fun bindItemsRepository(
+        itemsRepositoryImpl: ItemRepositoryImpl
+    ): ItemsRepository
 
-   companion object{
+    @Binds
+    abstract fun bindAuthRepository(
+        authRepositoryImpl: AuthRepositoryImpl
+    ): AuthRepository
+
+
+    companion object{
        private val SHARED_PRESS_KEY = "USER_KEY"
 
        @Provides
