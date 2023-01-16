@@ -14,4 +14,7 @@
     <string name="chislo">12.05.19</string>
     <string name="on_bording">ON BORDING</string>
     <string name="logout">Logout</string>
+    <string name="homefragment">HomeFragment</string>
+    <string name="home_fragment">home_fragment</string>
+    <string name="items_fragment">items_Fragment</string>
 </resources>

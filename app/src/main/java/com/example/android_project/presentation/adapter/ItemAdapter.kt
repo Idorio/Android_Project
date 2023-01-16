@@ -13,7 +13,9 @@ class ItemAdapter(private val itemListener: ItemListener) : RecyclerView.Adapter
         private var listItem = mutableListOf<ItemsModel>()
 
         fun submitList(list: List<ItemsModel>){
+            this.listItem.clear()
             this.listItem = list.toMutableList()
+            notifyDataSetChanged()
         }
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
             val viewBinding = ItemFruitBinding.inflate(

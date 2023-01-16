@@ -13,6 +13,7 @@ import com.example.android_project.R
 import com.example.android_project.databinding.FragmentHomeBinding
 import com.example.android_project.presentation.auth.LoginViewModel
 import com.example.android_project.presentation.auth.OnBoardingFragment
+import com.example.android_project.utils.NavHelper.replaceGraph
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -40,30 +41,21 @@ class HomeFragment : Fragment() {
     override  fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.showUserData()
 
 
 
-        lifecycleScope //однопоточная
-            .launch {viewModel.showUserData()
 
-        }
 
-        CoroutineScope(Dispatchers.IO)//Многопоточная
-            .launch {
-            val getData = async {  }
-            val navigate = async {  }
 
-                binding.btnFinish.setOnClickListener{
-                    parentFragmentManager.beginTransaction()
-                        .replace(R.id.activity_container, OnBoardingFragment())
-                        .commit()
+        binding.btnFinish.setOnClickListener{
+            viewModel.navToOnBoarding()
                 }
 
-                viewModel.userCreds.observe(viewLifecycleOwner){
-                    binding.tvUserCreds.text = "${it.userName} \n${it.userPassword}"
-                }
-
-        }
+        viewModel.nav.observe(viewLifecycleOwner){
+            if (it != null){
+                replaceGraph(it)
+            }
+                     }
     }
-
 }

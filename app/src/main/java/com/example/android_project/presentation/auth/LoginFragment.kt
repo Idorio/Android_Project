@@ -7,10 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.android_project.R
 import com.example.android_project.databinding.FragmentLoginBinding
+import com.example.android_project.utils.NavHelper.navigate
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private var _binding:FragmentLoginBinding? = null
@@ -38,9 +41,8 @@ class LoginFragment : Fragment() {
         }
         viewModel.nav.observe(viewLifecycleOwner) {
             if (it!= null) {
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.activity_container, LoginFragment())
-                    .commit()
+                navigate(R.id.action_loginFragment_to_homeFragment)
+                viewModel.userNavigated()
             }
         }
         viewModel.error.observe(viewLifecycleOwner){

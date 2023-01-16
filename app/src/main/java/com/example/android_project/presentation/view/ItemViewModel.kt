@@ -45,7 +45,8 @@ class ItemsViewModel @Inject constructor() : ViewModel(){
         _bundle.value = NavigateWithBundle(
             name = name,
             date = date,
-            image = imageView
+            image = imageView,
+            destinationId = R.id.action_itemsFragment_to_detailsFragment
         )
     }
 
@@ -59,5 +60,6 @@ class ItemsViewModel @Inject constructor() : ViewModel(){
 data class NavigateWithBundle(
     val image: Int,
     val name: String,
-    val date: String
+    val date: String,
+    val destinationId: Int
 )

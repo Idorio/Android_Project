@@ -9,7 +9,7 @@ class AuthInteractor @Inject constructor(
   suspend fun loginUser(userName:String, userPassword:String){
        authRepository.userLoggerIn(userName,userPassword)
    }
-    suspend  fun userLoggerOut(){
+    suspend  fun logoutUser(){
         authRepository.userLoggetOut()
     }
     suspend  fun doesUserExist(): Boolean {

@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.android_project.ItemsViewModel
 import com.example.android_project.R
 import com.example.android_project.data.ItemRepositoryImpl
 import com.example.android_project.databinding.FragmentItemsBinding
@@ -22,6 +25,7 @@ class ItemsFragment : Fragment(),ItemListener, ItemsView {
     private val viewBinding get() = _viewBinding!!
 
     private lateinit var  itemAdapter: ItemAdapter
+    private val viewModel: ItemsViewModel by viewModels()
 
     lateinit var itemsPresenter: ItemsPresenter
 
@@ -67,18 +71,14 @@ class ItemsFragment : Fragment(),ItemListener, ItemsView {
     }
 
     override fun goToDetails(name: String, date: String, imageView: Int) {
-        val detailsFragment = DetailsFragment()
         val bundle = Bundle()
         bundle.putString("name",name)
         bundle.putString("date",date)
         bundle.putInt("imageView", imageView)
-        detailsFragment.arguments = bundle
 
-        parentFragmentManager
-            .beginTransaction()
-            .replace(R.id.activity_container, detailsFragment)
-            .addToBackStack("Details")
-            .commit()
 
+        findNavController().navigate(
+            R.id.action_itemsFragment_to_detailsFragment,bundle
+        )
     }
 }

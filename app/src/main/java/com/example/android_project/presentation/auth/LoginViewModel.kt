@@ -29,9 +29,10 @@ class LoginViewModel @Inject constructor(private val authInteractor: AuthInterac
         }
         viewModelScope.launch(
             CoroutineName(
-                "with exception")+Dispatchers.Main + coroutineExceptionHandler) {
-            try {authInteractor.loginUser(userName, userPassword)
-                _nav.postValue(Unit)
+                "with exception")+Dispatchers.Main + coroutineExceptionHandler+Dispatchers.Main) {
+            try {
+                launch { loginUser(userName, userPassword)
+                    _nav.postValue(Unit) }
 
             }catch (e : Exception){
                 Log.w("exception", "LoginUser FAILED")
@@ -39,6 +40,10 @@ class LoginViewModel @Inject constructor(private val authInteractor: AuthInterac
 
 
         }
+    }
+
+    fun userNavigated(){
+        _nav.value= null
     }
 }
 
