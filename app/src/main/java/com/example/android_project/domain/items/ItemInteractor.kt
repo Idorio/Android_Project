@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class ItemInteractor @Inject constructor (private val itemRepository: ItemsRepository){
 
-    fun getData(): List<ItemsModel>{
+   suspend fun getData(): List<ItemsModel>{
         return itemRepository.getData()
     }
 }

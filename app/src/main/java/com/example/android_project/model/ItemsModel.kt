@@ -1,7 +1,8 @@
 package com.example.android_project.model
 
+import retrofit2.http.Url
+
 data class ItemsModel(
-    val image: Int,
-    val name: String,
-    val date: String
+    val description: String,
+    val imageUrl: String
 )

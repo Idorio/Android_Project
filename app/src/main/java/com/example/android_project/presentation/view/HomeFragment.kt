@@ -14,12 +14,13 @@ import com.example.android_project.databinding.FragmentHomeBinding
 import com.example.android_project.presentation.auth.LoginViewModel
 import com.example.android_project.presentation.auth.OnBoardingFragment
 import com.example.android_project.utils.NavHelper.replaceGraph
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -27,35 +28,29 @@ class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModels()
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
-
     }
-
     override  fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.showUserData()
 
-
-
-
-
-
         binding.btnFinish.setOnClickListener{
-            viewModel.navToOnBoarding()
+            viewModel.toRecyclerView()
                 }
 
         viewModel.nav.observe(viewLifecycleOwner){
             if (it != null){
                 replaceGraph(it)
             }
-                     }
+        }
+        viewModel.userCreds.observe(viewLifecycleOwner){
+            binding.tvUserCreds.text = "${it.userName} \n${it.userPassword}"
+        }
     }
 }

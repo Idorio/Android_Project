@@ -27,7 +27,6 @@ class ItemsFragment : Fragment(),ItemListener, ItemsView {
     private lateinit var  itemAdapter: ItemAdapter
     private val viewModel: ItemsViewModel by viewModels()
 
-    lateinit var itemsPresenter: ItemsPresenter
 
 
     override fun onCreateView(
@@ -38,25 +37,30 @@ class ItemsFragment : Fragment(),ItemListener, ItemsView {
         return viewBinding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override  fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        itemsPresenter = ItemsPresenter(this, ItemInteractor(ItemRepositoryImpl()))
+//        itemsPresenter = ItemsPresenter(this, ItemInteractor(ItemRepositoryImpl()))
 
 
         itemAdapter = ItemAdapter(this)
         viewBinding.recyclerView.adapter = itemAdapter
 
-        itemsPresenter.getData()
+
+        viewModel.getData()
+        viewModel.items.observe(viewLifecycleOwner) {list ->
+            itemAdapter.submitList(list)
+        }
+//
 
         }
 
     override fun onClick() {
-        itemsPresenter.imageViewClicked()
+        viewModel.imageViewClicked()
     }
 
     override fun onElementSelected(name: String, date: String, imageView: Int) {
-        itemsPresenter.elementSelected(name,date,imageView)
+        viewModel.elementClicked(name, date, imageView)
 
     }
 
