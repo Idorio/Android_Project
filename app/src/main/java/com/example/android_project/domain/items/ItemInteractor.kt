@@ -20,5 +20,6 @@ class ItemInteractor @Inject constructor (private val itemRepository: ItemsRepos
 
     suspend fun findItem(searchText:String):ItemsModel {
         return itemRepository.findItemsByDescription(searchText)
+
     }
 }
