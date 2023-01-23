@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_project.R
 import com.example.android_project.databinding.ItemFruitBinding
-import com.example.android_project.lister.ItemListener
+import com.example.android_project.domain.lister.ItemListener
 import com.example.android_project.model.ItemsModel
 
 class ItemAdapter(private val itemListener: ItemListener) : RecyclerView.Adapter<ItemViewHolder>() {

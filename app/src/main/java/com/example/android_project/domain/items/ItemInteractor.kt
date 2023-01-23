@@ -6,7 +6,19 @@ import javax.inject.Inject
 
 class ItemInteractor @Inject constructor (private val itemRepository: ItemsRepository){
 
-   suspend fun getData(): List<ItemsModel>{
-        return itemRepository.getData()
+   suspend fun getData(){
+       itemRepository.getData()
+    }
+
+    suspend fun showData() : List<ItemsModel>{
+        return itemRepository.showData()
+    }
+
+    suspend fun deleteItemByDescription(description: String){
+        itemRepository.deleteItemByDescription(description)
+    }
+
+    suspend fun findItem(searchText:String):ItemsModel {
+        return itemRepository.findItemsByDescription(searchText)
     }
 }

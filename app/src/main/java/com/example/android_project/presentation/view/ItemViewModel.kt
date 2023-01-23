@@ -31,12 +31,18 @@ class ItemsViewModel @Inject constructor(
    fun getData(){
        viewModelScope.launch {
            try {
-               _items.value = itemInteractor.getData()
+               itemInteractor.getData()
+               val itemsItems = itemInteractor.showData()
+               _items.value = itemsItems
            }catch (e : Exception){
                _error.value = "Error"
            }
        }
    }
+
+    suspend fun deleteItem(description: String){
+        itemInteractor.deleteItemByDescription(description)
+    }
     fun imageViewClicked(){
         _msg.value = "ImageView clicked"
 

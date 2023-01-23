@@ -4,7 +4,7 @@ package com.example.android_project.presentation.adapter
 import android.net.Uri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_project.databinding.ItemFruitBinding
-import com.example.android_project.lister.ItemListener
+import com.example.android_project.domain.lister.ItemListener
 import com.example.android_project.model.ItemsModel
 import com.squareup.picasso.Picasso
 

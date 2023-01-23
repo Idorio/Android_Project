@@ -1,5 +1,6 @@
 package com.example.android_project.presentation.view
 
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,16 +11,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.android_project.ItemsViewModel
 import com.example.android_project.R
-import com.example.android_project.data.ItemRepositoryImpl
 import com.example.android_project.databinding.FragmentItemsBinding
-import com.example.android_project.domain.items.ItemInteractor
 import com.example.android_project.presentation.adapter.ItemAdapter
-import com.example.android_project.lister.ItemListener
+import com.example.android_project.domain.lister.ItemListener
 import com.example.android_project.model.ItemsModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ItemsFragment : Fragment(),ItemListener, ItemsView {
+class ItemsFragment : Fragment(), ItemListener, ItemsView {
 
     private var _viewBinding: FragmentItemsBinding? = null
     private val viewBinding get() = _viewBinding!!
@@ -62,6 +61,10 @@ class ItemsFragment : Fragment(),ItemListener, ItemsView {
     override fun onElementSelected(name: String, date: String, imageView: Int) {
         viewModel.elementClicked(name, date, imageView)
 
+    }
+
+    override suspend fun onDeleteClicked(description: String) {
+        viewModel.deleteItem(description)
     }
 
     override fun dateReceived(listItems: List<ItemsModel>) {

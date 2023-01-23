@@ -1,6 +1,8 @@
 package com.example.android_project.data
 
 import com.example.android_project.R
+import com.example.android_project.data.data_base.ItemsEntity
+import com.example.android_project.data.data_base.dao.ItemsDAO
 import com.example.android_project.domain.ItemsRepository
 import com.example.android_project.model.ItemsModel
 import kotlinx.coroutines.Dispatchers
@@ -8,39 +10,46 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class ItemRepositoryImpl @Inject constructor(
-   private val apiService: ApiService
+   private val apiService: ApiService,
+
+
+
+   private val itemsDAO: ItemsDAO
 
 ):ItemsRepository {
 
-   override suspend fun getData(): List<ItemsModel>{
+   override suspend fun getData() {
       return withContext(Dispatchers.IO){
-         val responce = apiService.getData()
-         responce.body()?.sampleList.let {
-            it?.map {
-               ItemsModel(it.discription, it.imageUrl)
+         if (!itemsDAO.doesItemsEntityExist()){
+            val responce = apiService.getData()
+            responce.body()?.sampleList.let {
+               it?.map {
+                  val list = ItemsEntity((1..999).random(),it.discription, it.imageUrl)
+                  itemsDAO.insertItemsEntity(list)
+               }
+            }?: kotlin.run {
+               emptyList()
             }
-      }?: kotlin.run {
-         emptyList()
+         }
          }
 
 
-      }
-
-//      val listItems = mutableListOf<ItemsModel>(
-//         ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-//         ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-//         ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-//         ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-//         ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-//         ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-//         ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-//         ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-//         ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-//         ItemsModel(R.drawable.apple, "Android", "12.25.45"),
-//
-//         )
-//      return listItems
    }
 
+   override suspend fun showData():List<ItemsModel> {
+      return withContext(Dispatchers.IO){
+         val itemsEntity = itemsDAO.getItemsEntity()
+         itemsEntity.map {
+            ItemsModel(it.discription,it.imageUrl)
+         }
+      }
+   }
 
+   override suspend fun deleteItemByDescription(description: String) {
+      withContext(Dispatchers.IO){
+         itemsDAO.deleteItemEntityByDescription(description)
+      }
+   }
 }
+
+
