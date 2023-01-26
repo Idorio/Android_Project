@@ -9,12 +9,9 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.android_project.R
 import com.example.android_project.databinding.ActivityMainBinding
-import com.example.android_project.presentation.view.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 

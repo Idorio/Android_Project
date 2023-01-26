@@ -9,7 +9,7 @@ data class ItemsEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo("id")
     val id:Int,
-    @ColumnInfo("discription")
+    @ColumnInfo("description")
     val discription:String,
     @ColumnInfo("imageUrl")
     val imageUrl:String

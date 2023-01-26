@@ -2,90 +2,101 @@ package com.example.android_project.presentation.view
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.android_project.ItemsViewModel
+import com.example.android_project.NavigateWithBundle
 import com.example.android_project.R
-import com.example.android_project.databinding.FragmentItemsBinding
 import com.example.android_project.presentation.adapter.ItemAdapter
 import com.example.android_project.domain.lister.ItemListener
-import com.example.android_project.model.ItemsModel
+import com.example.android_project.utils.BundleConstants
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ItemsFragment : Fragment(), ItemListener, ItemsView {
+class ItemsFragment : Fragment(), ItemListener {
 
-    private var _viewBinding: FragmentItemsBinding? = null
-    private val viewBinding get() = _viewBinding!!
-
-    private lateinit var  itemAdapter: ItemAdapter
+    private lateinit var itemsAdapter: ItemAdapter
     private val viewModel: ItemsViewModel by viewModels()
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _viewBinding= FragmentItemsBinding.inflate(inflater)
-        return viewBinding.root
+    ): View? {
+        return inflater.inflate(R.layout.fragment_items, container, false)
     }
 
-    override  fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        itemsPresenter = ItemsPresenter(this, ItemInteractor(ItemRepositoryImpl()))
-
-
-        itemAdapter = ItemAdapter(this)
-        viewBinding.recyclerView.adapter = itemAdapter
-
+        itemsAdapter = ItemAdapter(this)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = itemsAdapter
 
         viewModel.getData()
-        viewModel.items.observe(viewLifecycleOwner) {list ->
-            itemAdapter.submitList(list)
-        }
-//
 
+        viewModel.items.observe(viewLifecycleOwner){ listItems ->
+            itemsAdapter.submitList(listItems)
         }
+
+        viewModel.msg.observe(viewLifecycleOwner){ msg ->
+            Toast.makeText(context, getString(msg), Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.error.observe(viewLifecycleOwner){
+            Log.w("ERRRRR", it)
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.bundle.observe(viewLifecycleOwner){ navBundle ->
+
+            if(navBundle != null){
+                val bundle = Bundle()
+
+                bundle.putString(DESCRIPTION, navBundle.description)
+                bundle.putString(BundleConstants.IMAGE_VIEW, navBundle.image)
+
+                NavigateWithBundle(BundleConstants.IMAGE_VIEW,R.id.action_itemsFragment_to_detailsFragment,
+                    DESCRIPTION)
+
+                viewModel.userNavigated() // в конце навигации говрим вьюмодели что действие выполнено
+            }
+        }
+    }
 
     override fun onClick() {
+
         viewModel.imageViewClicked()
     }
 
-    override fun onElementSelected(name: String, date: String, imageView: Int) {
-        viewModel.elementClicked(name, date, imageView)
 
+
+    override fun onElementSelected(description: String, image: String) {
+        viewModel.elementClicked(description, image, )
+    }
+
+
+
+    override fun onFavClicked(description: String) {
+        TODO("Not yet implemented")
     }
 
     override suspend fun onDeleteClicked(description: String) {
         viewModel.deleteItem(description)
     }
 
-    override fun dateReceived(listItems: List<ItemsModel>) {
-        itemAdapter.submitList(listItems)
+
+    //мы можем это использовать, потому что мы видим откуда берётся константа
+    companion object {
+        const val DESCRIPTION = "description"
     }
 
-    override fun imageViewClicked(msg: Int) {
-        Toast.makeText(context,getString(msg),Toast.LENGTH_SHORT).show()
-
-
-    }
-
-    override fun goToDetails(name: String, date: String, imageView: Int) {
-        val bundle = Bundle()
-        bundle.putString("name",name)
-        bundle.putString("date",date)
-        bundle.putInt("imageView", imageView)
-
-
-        findNavController().navigate(
-            R.id.action_itemsFragment_to_detailsFragment,bundle
-        )
-    }
 }
+

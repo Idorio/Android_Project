@@ -1,4 +1,4 @@
-package com.example.android_project.presentation.view
+package com.example.android_project.presentation.view.MainActivity
 
 import android.view.View
 import androidx.lifecycle.LiveData

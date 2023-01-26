@@ -18,9 +18,6 @@ class ItemViewHolder(
 
         viewBinding.tvName.text = itemModel.description
         Picasso.get().load(Uri.parse(itemModel.imageUrl)).into(viewBinding.ivName)
-//        viewBinding.ivName.setBackgroundResource(itemModel.image)
-//        viewBinding.tvDate.text = itemModel.date
-
 
         itemView.setOnClickListener{
             itemListener.onClick()
@@ -28,9 +25,7 @@ class ItemViewHolder(
         itemView.setOnClickListener{
             itemListener.onElementSelected(
                 itemModel.description,
-                "itemsModel.date",
-                0
-            )
+                itemModel.imageUrl)
         }
     }
 }
