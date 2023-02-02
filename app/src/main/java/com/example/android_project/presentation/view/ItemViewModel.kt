@@ -24,7 +24,7 @@ class ItemsViewModel @Inject constructor(
 
     val item = flow<Flow<List<ItemsModel>>> { emit(itemInteractor.showData()) }
 
-    val getData = flow { emit(itemInteractor.getData()) }
+//    val getData = flow { emit(itemInteractor.getData()) }
 
     private val _trigger = MutableLiveData<Flow<Unit>>()
     val trigger = _trigger
@@ -38,17 +38,7 @@ class ItemsViewModel @Inject constructor(
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
-    suspend fun getDataSimple(){
-        itemInteractor.getData()
-    }
 
-    fun getData() {
-        viewModelScope.launch {
-            viewModelScope.launch {
-                _trigger.value = flow { emit(itemInteractor.getData()) }
-            }
-        }
-    }
     suspend fun deleteItem(description: String) {
         viewModelScope.launch {
             itemInteractor.deleteItemByDescription(description)

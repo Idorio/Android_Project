@@ -7,9 +7,9 @@ import javax.inject.Inject
 
 class ItemInteractor @Inject constructor (private val itemRepository: ItemsRepository){
 
-   suspend fun getData(){
-       itemRepository.getData()
-    }
+//   suspend fun getData(){
+//       itemRepository.getData()
+//    }
 
     suspend fun showData() : Flow<List<ItemsModel>> {
         return itemRepository.showData()

@@ -9,11 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.example.android_project.R
-import com.example.android_project.databinding.FragmentItemsBinding
+
 import com.example.android_project.databinding.FragmentSearchBinding
-import com.example.android_project.presentation.view.MainActivity.service.MusicPlayer
-import com.squareup.picasso.Picasso
+
+
 
 class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
@@ -35,9 +34,9 @@ class SearchFragment : Fragment() {
 
 
         binding.btnStart.setOnClickListener{
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                requireActivity().startForegroundService(Intent(context,MusicPlayer::class.java))
-            }
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                requireActivity().startForegroundService(Intent(context,MusicPlayer::class.java))
+//            }
         }
         binding.btnStop.setOnClickListener {
 

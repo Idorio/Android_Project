@@ -43,26 +43,8 @@ class ItemsFragment : Fragment(), ItemListener {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = itemsAdapter
-     //Способ 1
-//        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-//            viewModel.getData.collect()
-//        }
-     //Способ 2
-//        viewModel.getData()
-//        viewModel.trigger.observe(viewLifecycleOwner){
-//            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-//                it.collect()
-//            }
-//        }
-     //Способ 3
-            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-                viewModel.getDataSimple()
-            }
 
 
-//        viewModel.items.observe(viewLifecycleOwner){ listItems ->
-//            itemsAdapter.submitList(listItems)
-//        }
 
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             viewModel.item.catch {

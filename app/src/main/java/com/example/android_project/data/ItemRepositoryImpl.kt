@@ -1,5 +1,6 @@
 package com.example.android_project.data
 
+import android.annotation.SuppressLint
 import android.util.Log
 import com.example.android_project.data.data_base.ItemsEntity
 import com.example.android_project.data.data_base.dao.ItemsDAO
@@ -18,10 +19,11 @@ class ItemRepositoryImpl @Inject constructor(
 
 ):ItemsRepository {
 
+   @SuppressLint("SuspiciousIndentation")
    override suspend fun getData() {
       return withContext(Dispatchers.IO){
-         itemsDAO.doesItemsEntityExist().collect(){
-            if (!it){
+       val itemExist =  itemsDAO.doesItemsEntityExist()
+            if (!itemExist){
                val responce = apiService.getData()
 
                Log.w("data", responce.body()?.sampleList.toString())
@@ -29,8 +31,6 @@ class ItemRepositoryImpl @Inject constructor(
                     it.map {
                         val list = ItemsEntity(Random().nextInt(),it.discription, it.imageUrl)
                         itemsDAO.insertItemsEntity(list)
-
-                    }
                 }
             }
          }
