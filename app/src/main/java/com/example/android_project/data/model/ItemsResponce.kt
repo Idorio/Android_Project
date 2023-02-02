@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Sample(
 
-    @SerializedName("discription")
+    @SerializedName("description")
     val discription: String,
     @SerializedName("image-url")
     val imageUrl: String

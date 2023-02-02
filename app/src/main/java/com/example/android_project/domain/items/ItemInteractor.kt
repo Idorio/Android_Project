@@ -2,6 +2,7 @@ package com.example.android_project.domain.items
 
 import com.example.android_project.domain.ItemsRepository
 import com.example.android_project.model.ItemsModel
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class ItemInteractor @Inject constructor (private val itemRepository: ItemsRepository){
@@ -10,7 +11,7 @@ class ItemInteractor @Inject constructor (private val itemRepository: ItemsRepos
        itemRepository.getData()
     }
 
-    suspend fun showData() : List<ItemsModel>{
+    suspend fun showData() : Flow<List<ItemsModel>> {
         return itemRepository.showData()
     }
 

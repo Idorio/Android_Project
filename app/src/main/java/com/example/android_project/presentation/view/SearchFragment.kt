@@ -1,6 +1,8 @@
 package com.example.android_project.presentation.view
 
+import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +12,7 @@ import androidx.fragment.app.viewModels
 import com.example.android_project.R
 import com.example.android_project.databinding.FragmentItemsBinding
 import com.example.android_project.databinding.FragmentSearchBinding
+import com.example.android_project.presentation.view.MainActivity.service.MusicPlayer
 import com.squareup.picasso.Picasso
 
 class SearchFragment : Fragment() {
@@ -30,21 +33,14 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.search.setOnQueryTextListener(object: androidx.appcompat.widget.SearchView.OnQueryTextListener{
 
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                return false
+        binding.btnStart.setOnClickListener{
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                requireActivity().startForegroundService(Intent(context,MusicPlayer::class.java))
             }
+        }
+        binding.btnStop.setOnClickListener {
 
-            override fun onQueryTextChange(p0: String?): Boolean {
-                viewModel.findItem(p0?:"")
-                return false
-            }
-        })
-
-        viewModel.item.observe(viewLifecycleOwner){
-            binding.tvDescription.text = it.description
-            Picasso.get().load(Uri.parse(it.imageUrl)).into(binding.ivSearch)
         }
     }
 

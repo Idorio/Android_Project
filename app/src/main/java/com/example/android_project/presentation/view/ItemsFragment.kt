@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_project.ItemsViewModel
@@ -18,6 +19,9 @@ import com.example.android_project.presentation.adapter.ItemAdapter
 import com.example.android_project.domain.lister.ItemListener
 import com.example.android_project.utils.BundleConstants
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
+
 
 @AndroidEntryPoint
 class ItemsFragment : Fragment(), ItemListener {
@@ -39,11 +43,36 @@ class ItemsFragment : Fragment(), ItemListener {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = itemsAdapter
+     //Способ 1
+//        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+//            viewModel.getData.collect()
+//        }
+     //Способ 2
+//        viewModel.getData()
+//        viewModel.trigger.observe(viewLifecycleOwner){
+//            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+//                it.collect()
+//            }
+//        }
+     //Способ 3
+            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+                viewModel.getDataSimple()
+            }
 
-        viewModel.getData()
 
-        viewModel.items.observe(viewLifecycleOwner){ listItems ->
-            itemsAdapter.submitList(listItems)
+//        viewModel.items.observe(viewLifecycleOwner){ listItems ->
+//            itemsAdapter.submitList(listItems)
+//        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            viewModel.item.catch {
+                Toast.makeText(context, it.message.toString(), Toast.LENGTH_SHORT).show()
+            }
+                .collect{flowList->
+                flowList.collect(){list->
+                    itemsAdapter.submitList(list)
+                }
+            }
         }
 
         viewModel.msg.observe(viewLifecycleOwner){ msg ->

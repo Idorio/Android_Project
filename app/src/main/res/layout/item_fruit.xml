@@ -21,10 +21,10 @@
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.886"
+            app:layout_constraintHorizontal_bias="0.647"
             app:layout_constraintStart_toEndOf="@+id/tv_name"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.523"/>
+            app:layout_constraintVertical_bias="0.523" />
 
         <TextView
             android:id="@+id/tv_name"
@@ -34,15 +34,10 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.035"
+            app:layout_constraintHorizontal_bias="0.053"
             app:layout_constraintStart_toEndOf="@+id/iv_name"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.523" />
-
-
-
-
-
 
         <com.google.android.material.imageview.ShapeableImageView
 
@@ -62,9 +57,12 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tv_date"
-            app:layout_constraintStart_toEndOf="@+id/tv_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_date"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@android:drawable/btn_dialog" />
 

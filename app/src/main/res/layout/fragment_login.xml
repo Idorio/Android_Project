@@ -26,7 +26,8 @@
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.264" />
+        app:layout_constraintVertical_bias="0.264"
+        tools:ignore="RtlCompat" />
 
     <EditText
         android:id="@+id/et_userPassword"
@@ -41,7 +42,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_userName"
-        app:layout_constraintVertical_bias="0.08" />
+        app:layout_constraintVertical_bias="0.08"
+        tools:ignore="RtlCompat" />
 
     <Button
         android:id="@+id/btnLogin"

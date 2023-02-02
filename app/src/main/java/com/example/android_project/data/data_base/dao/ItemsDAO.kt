@@ -4,16 +4,18 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.android_project.data.data_base.ItemsEntity
+import kotlinx.coroutines.flow.Flow
+
 @Dao
 interface ItemsDAO {
 
 
 
     @Query("SELECT * From ItemsEntity ")
-    fun getItemsEntity() : List<ItemsEntity>
+    fun getItemsEntity() : Flow<List<ItemsEntity>>
 
     @Query("SELECT(SELECT COUNT(*) From ItemsEntity) != 0") //если БД пустая добавит элемент, если не пустая, то нет
-    fun doesItemsEntityExist(): Boolean
+    fun doesItemsEntityExist(): Flow<Boolean>
 
     @Insert
     fun insertItemsEntity(itemsEntity: ItemsEntity)
