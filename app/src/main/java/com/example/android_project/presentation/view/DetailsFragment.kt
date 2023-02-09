@@ -8,11 +8,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.navigation.fragment.findNavController
 import com.example.android_project.ItemsViewModel
 import com.example.android_project.R
 import com.example.android_project.databinding.FragmentDetailsBinding
 import com.example.android_project.databinding.FragmentItemsBinding
+import com.example.android_project.di.App
+import javax.inject.Inject
 
 
 class DetailsFragment : Fragment() {
@@ -20,7 +24,10 @@ class DetailsFragment : Fragment() {
     private var _viewBinding: FragmentDetailsBinding? = null
     private val viewBinding get() = _viewBinding!!
 
-    private val viewModel: DetailsViewModel by viewModels()
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel: DetailsViewModel by viewModels {viewModelFactory}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,12 +36,14 @@ class DetailsFragment : Fragment() {
 
         _viewBinding= FragmentDetailsBinding.inflate(inflater)
         return viewBinding.root
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        (requireActivity().applicationContext as App).appComponent.inject(this)
 
         val bundle = arguments
         bundle?.let {

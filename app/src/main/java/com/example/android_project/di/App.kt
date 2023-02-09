@@ -1,10 +1,23 @@
 package com.example.android_project.di
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import com.example.android_project.di.component.AppComponent
+import com.example.android_project.di.component.DaggerAppComponent
 
 
-@HiltAndroidApp
-class App : Application()
+class App : Application(){
+
+    lateinit var appComponent: AppComponent
+    fun provideAppComponent() : AppComponent{
+        appComponent = DaggerAppComponent
+            .builder()
+            .appModule(AppModule(this))
+            .build()
+        return appComponent
+    }
+
+
+
+}
 
 

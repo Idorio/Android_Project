@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph
@@ -12,15 +13,20 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.android_project.R
 import com.example.android_project.databinding.ActivityMainBinding
-import dagger.hilt.android.AndroidEntryPoint
+import com.example.android_project.di.App
 import java.util.*
+import javax.inject.Inject
 
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() , NavController.OnDestinationChangedListener{
 
     private lateinit var binding: ActivityMainBinding
-    private val viewModel: MainActivityViewModel by viewModels()
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel: MainActivityViewModel by viewModels {viewModelFactory}
+
+
     private lateinit var navController: NavController
     private lateinit var navHostFragment: NavHostFragment
 
@@ -28,6 +34,9 @@ class MainActivity : AppCompatActivity() , NavController.OnDestinationChangedLis
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
+
+        (applicationContext as App).appComponent.inject(this)
+
         viewModel.checkUserExists()
 
         navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment

@@ -9,11 +9,9 @@ import com.example.android_project.R
 import com.example.android_project.domain.auth.AuthInteractor
 import com.example.android_project.model.UserModel
 import javax.inject.Inject;
-
-import dagger.hilt.android.lifecycle.HiltViewModel;
 import kotlinx.coroutines.launch
 
-@HiltViewModel
+
 class HomeViewModel @Inject constructor(private val authInteractor: AuthInteractor
 ): ViewModel() {
 

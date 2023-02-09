@@ -1,4 +1,4 @@
-package com.example.android_project.presentation.view
+package com.example.android_project.presentation.auth.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

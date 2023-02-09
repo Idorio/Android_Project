@@ -10,14 +10,12 @@ import com.example.android_project.domain.auth.AuthRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
+
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-@InstallIn(SingletonComponent::class)
+
 abstract class DataModule {
     @Binds
     abstract fun bindItemsRepository(
@@ -36,7 +34,7 @@ abstract class DataModule {
 
 
        @Provides
-       fun provideSharedPreferencesHelper(@ApplicationContext context: Context):SharedPreferencesHelper{
+       fun provideSharedPreferencesHelper(context: Context):SharedPreferencesHelper{
            return SharedPreferencesHelper(
                context.getSharedPreferences(SHARED_PRESS_KEY,
                    Context.MODE_PRIVATE)

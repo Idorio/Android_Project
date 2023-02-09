@@ -14,8 +14,6 @@ class MusicPlayer: Service() {
 
     override fun onCreate() {
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.music);
-        mediaPlayer.isLooping = true
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
