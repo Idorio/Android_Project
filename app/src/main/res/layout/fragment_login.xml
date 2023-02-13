@@ -14,9 +14,10 @@
 
     <EditText
         android:id="@+id/et_userName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="349dp"
+        android:layout_height="61dp"
         android:layout_marginHorizontal="30dp"
+        android:background="@drawable/edittext_stoke_background"
         android:gravity="center"
 
         android:hint="User Name"
@@ -31,12 +32,13 @@
 
     <EditText
         android:id="@+id/et_userPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="355dp"
+        android:layout_height="55dp"
         android:layout_marginHorizontal="30dp"
+        android:background="@drawable/edittext_stoke_background"
         android:gravity="center"
-
         android:hint="Password"
+        android:paddingStart="20dp"
         android:textAlignment="viewStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,28 +49,29 @@
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="261dp"
+        android:layout_width="0dp"
         android:layout_height="54dp"
         android:gravity="center"
 
         android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/et_userPassword"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/et_userPassword"
         app:layout_constraintTop_toBottomOf="@+id/et_userPassword"
-        app:layout_constraintVertical_bias="0.159" />
+        app:layout_constraintVertical_bias="0.16" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="83dp"
+        android:layout_height="52dp"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin"
-        app:layout_constraintVertical_bias="0.344" />
+        app:layout_constraintVertical_bias="0.367" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
