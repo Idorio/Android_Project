@@ -55,9 +55,9 @@ class ItemsFragment : Fragment(), ItemListener {
 //            }
 //        }
      //Способ 3
-            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-                viewModel.getDataSimple()
-            }
+//            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+//                viewModel.getDataSimple()
+//            }
 
 
 //        viewModel.items.observe(viewLifecycleOwner){ listItems ->

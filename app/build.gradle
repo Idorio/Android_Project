@@ -81,5 +81,8 @@ dependencies {
 
     implementation 'com.google.dagger:dagger:2.43.2'
 
+//Location
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+
 
 }
