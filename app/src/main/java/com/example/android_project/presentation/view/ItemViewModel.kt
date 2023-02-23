@@ -18,11 +18,20 @@ class ItemsViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-//    private val _items = MutableLiveData<List<ItemsModel>>()
-//    val items: LiveData<List<ItemsModel>> = _items
+    private val _items = MutableLiveData<List<ItemsModel>>()
+    val items: LiveData<List<ItemsModel>> = _items
 
+    fun showData(){
+        viewModelScope.launch {
+            try {
+                itemInteractor.getData()
+                _items.value = itemInteractor.showData()
+            }catch (e: Exception){
+                _error.value= e.message
+            }
+        }
+    }
 
-    val item = flow<Flow<List<ItemsModel>>> { emit(itemInteractor.showData()) }
 
     val getData = flow { emit(itemInteractor.getData()) }
 

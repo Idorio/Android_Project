@@ -3,8 +3,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android_project.R
+import com.example.android_project.domain.auth.AuthInteractor
+import javax.inject.Inject
 
-class OnBoardingViewModel : ViewModel() {
+class OnBoardingViewModel @Inject constructor(private val authInteractor: AuthInteractor) : ViewModel() {
     private val _nav = MutableLiveData<navToItems?>()
     val nav: LiveData<navToItems?> = _nav
 

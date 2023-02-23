@@ -11,7 +11,7 @@ class ItemInteractor @Inject constructor (private val itemRepository: ItemsRepos
        itemRepository.getData()
     }
 
-    suspend fun showData() : Flow<List<ItemsModel>> {
+    suspend fun showData() :List<ItemsModel> {
         return itemRepository.showData()
     }
 

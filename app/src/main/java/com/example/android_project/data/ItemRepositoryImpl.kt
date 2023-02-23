@@ -19,9 +19,9 @@ class ItemRepositoryImpl @Inject constructor(
 ):ItemsRepository {
 
    override suspend fun getData() {
-      return withContext(Dispatchers.IO){
-         itemsDAO.doesItemsEntityExist().collect(){
-            if (!it){
+      withContext(Dispatchers.IO){
+          val itemExist = itemsDAO.doesItemsEntityExist()
+            if (!itemExist){
                val responce = apiService.getData()
 
                Log.w("data", responce.body()?.sampleList.toString())
@@ -31,35 +31,30 @@ class ItemRepositoryImpl @Inject constructor(
                         itemsDAO.insertItemsEntity(list)
 
                     }
-                }
             }
          }
        }
    }
-   override suspend fun showData(): Flow<List<ItemsModel>> {
-      return withContext(Dispatchers.IO){
-         val itemsEntity = itemsDAO.getItemsEntity()
-         itemsEntity.map {itemsList->
-            itemsList.map{item->
-               ItemsModel(item.discription,item.imageUrl)
+
+    override suspend fun showData(): List<ItemsModel> {
+
+        return withContext(Dispatchers.IO){
+                val itemsEntity = itemsDAO.getItemsEntity()
+                itemsEntity.map{item->
+                    ItemsModel(item.discription,item.imageUrl)
+                }
             }
-         }
-      }
-   }
+        }
 
-   override suspend fun deleteItemByDescription(description: String) {
-      withContext(Dispatchers.IO){
-         itemsDAO.deleteItemEntityByDescription(description)
-      }
-   }
+    override suspend fun deleteItemByDescription(description: String) {
+        TODO("Not yet implemented")
+    }
 
-   override suspend fun findItemsByDescription(searchText: String): ItemsModel {
-     return withContext(Dispatchers.IO){
-        val itemsEntity = itemsDAO.findItemEntityByDescription(searchText)
-
-        ItemsModel(itemsEntity.discription, itemsEntity.imageUrl)
-     }
-   }
+    override suspend fun findItemsByDescription(searchText: String): ItemsModel {
+        TODO("Not yet implemented")
+    }
 }
+
+
 
 
